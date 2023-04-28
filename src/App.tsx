@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, LegacyRef } from "react";
 
 import SideBar from "./components/SideBar";
 import PageContent from "./components/PageContent";
@@ -11,20 +11,18 @@ interface page {
 function App() {
   const [data, setData] = useState<Array<page>>([]);
   const [pageNumber, setPageNumber] = useState<number>(0);
-  const [error, setError] = useState<boolean>(false);
+  // const [error, setError] = useState<boolean>(false);
 
-  const addressInputElement = useRef();
+  const addressInputElement = useRef<LegacyRef<HTMLInputElement>>(null);
 
-  const loadDocumentation = (e: Event) => {
-    e.preventDefault();
+  const loadDocumentation = () => {
+    
     console.log(addressInputElement.current);
     fetch(addressInputElement.current?.value)
       .then((response) => response.json())
       .then((data) => setData(data.Pages))
-      .catch(() => {
-        setError(true);
-      });
-  };
+  }
+      
 
   useEffect(() => {
     // fetch(
