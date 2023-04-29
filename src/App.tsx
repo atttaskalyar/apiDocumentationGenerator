@@ -4,13 +4,13 @@ import SideBar from "./components/SideBar";
 import PageContent from "./components/PageContent";
 import { Page } from "./interfaces";
 
+import "./index.css"
+
 
 
 function App() {
   const [data, setData] = useState<Page[]>([]);
   const [pageNumber, setPageNumber] = useState<number>(0);
-  // const [error, setError] = useState<boolean>(false);
-
   const addressInputElement = useRef<any>(null);
 
   const loadDocumentation = () => {
@@ -19,17 +19,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => setData(data.Pages));
   };
-
-  useEffect(() => {
-    // fetch(
-    //   api
-    // )
-    //   .then((response) => response.json())
-    //   .then((data) => setData(data.Pages))
-    //   .catch(()=>{
-    //     setError(true)
-    //   })
-  }, []);
 
   return (
     <>
@@ -41,21 +30,24 @@ function App() {
       ) : (
         <div
           style={{
-            width: "100vw",
+            width: "100%",
             height: "100vh",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            scrollbarColor:"transparent"
           }}
         >
-          <h1>Input the URL to get the documentation</h1>
+          <h1 style={{fontSize:"40px", display:"block"}}>Input the URL to get the documentation</h1>
           <input
+          style={{marginTop:"10px", fontSize:"20px"}}
             type="text"
             placeholder="enter link"
             ref={addressInputElement}
           />
           <button
+            style={{marginTop:"20px", fontSize:"15px"}}
             type="button"
             onClick={loadDocumentation}
             placeholder="Request Documentation"

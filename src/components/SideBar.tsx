@@ -11,7 +11,7 @@ const SideBar = (props: Props) => {
 
   return (
     <div style={{ minWidth: "20%", overflow: "hidden" }}>
-      {pages.map((page: any, index: number) => {
+      {pages.map((page: Page, index: number) => {
         return (
           <button
             style={{
