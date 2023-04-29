@@ -1,12 +1,18 @@
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { useMemo } from "react";
+import { Page } from "../interfaces";
 
 // interface Page {
 //   title:String, 
 //   bodyText:String
 // }
+interface Props{
+  page: Page
+}
 
-const PageContent = ({ page }: { page: any }) => {
+const PageContent = (props: Props) => {
+  const { page } = props;
+
   return useMemo(
     () => (
       <div>
